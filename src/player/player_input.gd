@@ -19,9 +19,15 @@ var _mouse_mode = Input.MOUSE_MODE_VISIBLE
 @export var actions = [ "jump", "aim", "shoot", "esc" ]
 @export var mouse_sensitivity = 1.0
 
+var mouse_motion := Vector2.ZERO
+
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	ServiceLocator.register("PlayerInput", self)
+	if not Engine.is_editor_hint():
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		ServiceLocator.register("PlayerInput", self)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
 
 func _process(_d):
 	for axis_name in _axis.keys():
@@ -41,7 +47,14 @@ func _process(_d):
 			action_pressed.emit(action_name)
 	
 	if Input.is_action_just_pressed("esc"):
-		_mouse_mode = Input.MOUSE_MODE_VISIBLE if _mouse_mode == Input.MOUSE_MODE_CAPTURED else Input.MOUSE_MODE_CAPTURED
+		_mouse_mode = Input.MOUSE_MODE_VISIBLE
+	if Input.is_action_just_pressed("shoot"):
+		_mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+func _input(event):
+	if event is InputEventMouseMotion:
+			mouse_motion = event.relative
+
 
 func get_axis(_name: String):
 	if _name == "horizontal":

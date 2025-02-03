@@ -1,9 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://ci87u2i3jd7f7"]
+[gd_scene load_steps=13 format=3 uid="uid://ci87u2i3jd7f7"]
 
 [ext_resource type="PackedScene" uid="uid://bl2ks5x8csab0" path="res://character/player_character.tscn" id="1_kkqis"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_33j1a"]
-[ext_resource type="Script" path="res://character/camera_controller.gd" id="2_h4as4"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_4xxjr"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_mqqq7"]
 [ext_resource type="PackedScene" uid="uid://dxw7cledbpiia" path="res://prototype/proto-csgs/proto_csg_box_3d.tscn" id="4_suthf"]
 [ext_resource type="Texture2D" uid="uid://cej3yoosomfd2" path="res://prototype/proto-csgs/textures/dark/texture_13.png" id="5_n8ujk"]
@@ -44,30 +41,12 @@ albedo_texture = ExtResource("5_n8ujk")
 uv1_offset = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true
 
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_m8xom"]
-dof_blur_far_enabled = true
-dof_blur_far_distance = 50.0
-dof_blur_near_enabled = true
-dof_blur_near_transition = 3.0
-dof_blur_amount = 0.09
+[sub_resource type="Environment" id="Environment_op7qb"]
 
-[sub_resource type="Resource" id="Resource_oe0t8"]
-script = ExtResource("3_4xxjr")
-duration = 1.0
-transition = 0
-ease = 2
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_5v8lp"]
+auto_exposure_enabled = true
 
 [node name="Default" type="Node3D"]
-
-[node name="PlayerCharacter" parent="." instance=ExtResource("1_kkqis")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-
-[node name="CameraController" type="Node3D" parent="PlayerCharacter"]
-transform = Transform3D(1, 0, -1.49012e-08, 0, 1, 0, 1.49012e-08, 0, 1, 0, 1.50727, 0)
-script = ExtResource("2_h4as4")
-
-[node name="CameraPosition" type="Marker3D" parent="PlayerCharacter/CameraController"]
-transform = Transform3D(-0.999999, 0, 8.74227e-08, 0, 1, 0, -8.74227e-08, 0, -0.999999, -2.98023e-08, 0, -2)
 
 [node name="Environment" type="Node" parent="."]
 
@@ -108,22 +87,18 @@ material = SubResource("StandardMaterial3D_g3pss")
 block_color = 5
 block_style = 1
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 1.50727, -2)
-attributes = SubResource("CameraAttributesPractical_m8xom")
-fov = 70.0
+[node name="Player" type="Node" parent="."]
 
-[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(-1, 9.72438e-15, -5.94151e-14, 0, 0.98687, 0.16152, 6.02056e-14, 0.16152, -0.98687, -1.13687e-13, 1.81633, -1.88831)
+environment = SubResource("Environment_op7qb")
+attributes = SubResource("CameraAttributesPractical_5v8lp")
+
+[node name="PhantomCameraHost" type="Node" parent="Player/Camera3D"]
 process_priority = 300
 process_physics_priority = 300
 script = ExtResource("4_mqqq7")
 
-[node name="PhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target", "look_at_target")]
-transform = Transform3D(-0.999838, 0, 0, 0, 0.999995, 0, 0, 0, -0.999843, 0, 1.50727, -2)
-top_level = true
-script = ExtResource("2_33j1a")
-follow_mode = 1
-follow_target = NodePath("../PlayerCharacter/CameraController/CameraPosition")
-look_at_mode = 2
-look_at_target = NodePath("../PlayerCharacter/CameraController")
-tween_resource = SubResource("Resource_oe0t8")
+[node name="PlayerCharacter" parent="Player" instance=ExtResource("1_kkqis")]
+look_dir_arrow_length = 2.36
+look_dir_arrow_head_size = 0.07
