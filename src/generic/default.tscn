@@ -1,0 +1,129 @@
+[gd_scene load_steps=16 format=3 uid="uid://ci87u2i3jd7f7"]
+
+[ext_resource type="PackedScene" uid="uid://bl2ks5x8csab0" path="res://character/player_character.tscn" id="1_kkqis"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_33j1a"]
+[ext_resource type="Script" path="res://character/camera_controller.gd" id="2_h4as4"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_4xxjr"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_mqqq7"]
+[ext_resource type="PackedScene" uid="uid://dxw7cledbpiia" path="res://prototype/proto-csgs/proto_csg_box_3d.tscn" id="4_suthf"]
+[ext_resource type="Texture2D" uid="uid://cej3yoosomfd2" path="res://prototype/proto-csgs/textures/dark/texture_13.png" id="5_n8ujk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e38sa"]
+resource_local_to_scene = true
+albedo_texture = ExtResource("5_n8ujk")
+uv1_offset = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u03y7"]
+resource_local_to_scene = true
+albedo_texture = ExtResource("5_n8ujk")
+uv1_offset = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvauw"]
+resource_local_to_scene = true
+albedo_texture = ExtResource("5_n8ujk")
+uv1_offset = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xidck"]
+resource_local_to_scene = true
+albedo_texture = ExtResource("5_n8ujk")
+uv1_offset = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rp3ny"]
+resource_local_to_scene = true
+albedo_texture = ExtResource("5_n8ujk")
+uv1_offset = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g3pss"]
+resource_local_to_scene = true
+albedo_texture = ExtResource("5_n8ujk")
+uv1_offset = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_m8xom"]
+dof_blur_far_enabled = true
+dof_blur_far_distance = 50.0
+dof_blur_near_enabled = true
+dof_blur_near_transition = 3.0
+dof_blur_amount = 0.09
+
+[sub_resource type="Resource" id="Resource_oe0t8"]
+script = ExtResource("3_4xxjr")
+duration = 1.0
+transition = 0
+ease = 2
+
+[node name="Default" type="Node3D"]
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("1_kkqis")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CameraController" type="Node3D" parent="PlayerCharacter"]
+transform = Transform3D(1, 0, -1.49012e-08, 0, 1, 0, 1.49012e-08, 0, 1, 0, 1.50727, 0)
+script = ExtResource("2_h4as4")
+
+[node name="CameraPosition" type="Marker3D" parent="PlayerCharacter/CameraController"]
+transform = Transform3D(-0.999999, 0, 8.74227e-08, 0, 1, 0, -8.74227e-08, 0, -0.999999, -2.98023e-08, 0, -2)
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="ProtoCSGBox3D" parent="Environment" instance=ExtResource("4_suthf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+size = Vector3(50, 1, 50)
+material = SubResource("StandardMaterial3D_e38sa")
+
+[node name="ProtoCSGBox3D2" parent="Environment" instance=ExtResource("4_suthf")]
+transform = Transform3D(0.777859, 0, -0.628438, 0, 1, 0, 0.628438, 0, 0.777859, -10.5009, 1.47709, 14.5249)
+size = Vector3(3, 3, 3)
+material = SubResource("StandardMaterial3D_u03y7")
+block_color = 1
+block_style = 1
+
+[node name="ProtoCSGBox3D3" parent="Environment" instance=ExtResource("4_suthf")]
+transform = Transform3D(0.230203, 0, -0.973143, 0, 1, 0, 0.973143, 0, 0.230203, -4.44503, 0.509627, -11.5363)
+material = SubResource("StandardMaterial3D_wvauw")
+block_color = 4
+block_style = 3
+
+[node name="ProtoCSGBox3D4" parent="Environment" instance=ExtResource("4_suthf")]
+transform = Transform3D(-0.384183, 0, -0.923257, 0, 1, 0, 0.923257, 0, -0.384183, 4.33027, 0.509627, -1.04353)
+material = SubResource("StandardMaterial3D_xidck")
+block_color = 4
+block_style = 10
+
+[node name="ProtoCSGBox3D5" parent="Environment" instance=ExtResource("4_suthf")]
+transform = Transform3D(-0.384183, 0, -0.923257, 0, 1, 0, 0.923257, 0, -0.384183, -4.76029, 0.509627, -3.12089)
+material = SubResource("StandardMaterial3D_rp3ny")
+block_color = 4
+block_style = 5
+
+[node name="ProtoCSGBox3D6" parent="Environment" instance=ExtResource("4_suthf")]
+transform = Transform3D(-0.384183, 0, -0.923257, 0, 1, 0, 0.923257, 0, -0.384183, 2.35712, 0.855124, -6.6463)
+size = Vector3(1, 1.7, 1)
+material = SubResource("StandardMaterial3D_g3pss")
+block_color = 5
+block_style = 1
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 1.50727, -2)
+attributes = SubResource("CameraAttributesPractical_m8xom")
+fov = 70.0
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("4_mqqq7")
+
+[node name="PhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target", "look_at_target")]
+transform = Transform3D(-0.999838, 0, 0, 0, 0.999995, 0, 0, 0, -0.999843, 0, 1.50727, -2)
+top_level = true
+script = ExtResource("2_33j1a")
+follow_mode = 1
+follow_target = NodePath("../PlayerCharacter/CameraController/CameraPosition")
+look_at_mode = 2
+look_at_target = NodePath("../PlayerCharacter/CameraController")
+tween_resource = SubResource("Resource_oe0t8")
