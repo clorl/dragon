@@ -43,7 +43,7 @@ uv1_triplanar = true
 
 [sub_resource type="Environment" id="Environment_op7qb"]
 
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_5v8lp"]
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_bv2du"]
 auto_exposure_enabled = true
 
 [node name="Default" type="Node3D"]
@@ -92,7 +92,7 @@ block_style = 1
 [node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(-1, 9.72438e-15, -5.94151e-14, 0, 0.98687, 0.16152, 6.02056e-14, 0.16152, -0.98687, -1.13687e-13, 1.81633, -1.88831)
 environment = SubResource("Environment_op7qb")
-attributes = SubResource("CameraAttributesPractical_5v8lp")
+attributes = SubResource("CameraAttributesPractical_bv2du")
 
 [node name="PhantomCameraHost" type="Node" parent="Player/Camera3D"]
 process_priority = 300

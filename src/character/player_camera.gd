@@ -14,16 +14,16 @@ func _ready():
 
 func _process(delta):
     # Get mouse input for camera rotation
-    var mouse_movement = Input.get_mouse_motion()
+    var mouse_movement = Input.get_last_mouse_velocity()
     yaw -= mouse_movement.x * rotation_speed * delta  # Rotate around Y-axis
     pitch -= mouse_movement.y * rotation_speed * delta  # Rotate around X-axis
     pitch = clamp(pitch, -80, 80)  # Limit vertical rotation
 
     # Calculate the new camera position
     var offset = Vector3()
-    offset.x = distance * cos(deg2rad(pitch)) * sin(deg2rad(yaw))
-    offset.y = distance * sin(deg2rad(pitch))
-    offset.z = distance * cos(deg2rad(pitch)) * cos(deg2rad(yaw))
+    offset.x = distance * cos(deg_to_rad(pitch)) * sin(deg_to_rad(yaw))
+    offset.y = distance * sin(deg_to_rad(pitch))
+    offset.z = distance * cos(deg_to_rad(pitch)) * cos(deg_to_rad(yaw))
 
     # Set the camera position
     global_transform.origin = target.global_transform.origin + offset

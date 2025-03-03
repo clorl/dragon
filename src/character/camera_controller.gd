@@ -1,7 +1,6 @@
 @tool
 extends Node3D
 
-signal camera_moved(t: Transform)
 
 
 # Internal variables
@@ -16,4 +15,5 @@ func _input(event):
         mouse_motion = event.relative
 
 func _process(delta):
+    pass
     # Rotate horizontally (yaw)

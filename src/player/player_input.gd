@@ -33,8 +33,8 @@ func _process(_d):
 	for axis_name in _axis.keys():
 		var new_value = get_axis(axis_name)
 		if not is_equal_approx(_axis[axis_name], new_value):
-			axis_changed.emit(axis_name)
 			_axis[axis_name] = new_value
+			axis_changed.emit(axis_name, new_value)
 		if is_zero_approx(_axis[axis_name]):
 			_axis[axis_name] = 0
 	

@@ -21,6 +21,16 @@ Panku="*res://addons/panku_console/console.tscn"
 ServiceLocator="*res://generic/service_locator.gd"
 GameData="*res://data/game_data.gd"
 
+[debug]
+
+gdscript/warnings/unassigned_variable=0
+gdscript/warnings/unassigned_variable_op_assign=0
+gdscript/warnings/unused_variable=0
+gdscript/warnings/unused_local_constant=0
+gdscript/warnings/unused_private_class_variable=0
+gdscript/warnings/unused_parameter=0
+gdscript/warnings/unused_signal=0
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/imjp94.yafsm/plugin.cfg", "res://addons/panku_console/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
